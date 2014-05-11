@@ -17,6 +17,12 @@ function onError(err) {
   }
 }
 
+/**************************************************
+***************************************************
+This section covers development related tasks 
+***************************************************
+***************************************************
+ */
 
 //Watches everything in the public folder and emits it to the reloader task.
 gulp.task('watchLoader', function(){
@@ -92,7 +98,31 @@ gulp.task('default', ['cleaner'], function(){
 	gulp.start('development')
 });
 
+
+/**************************************************
+***************************************************
+This section covers pre-deployment related tasks
+***************************************************
+***************************************************
+ */
 //cleans dest file and then calls minJS
 gulp.task('production', ['cleaner'], function(){
 	gulp.start('minJS');
+});
+
+
+/**************************************************
+***************************************************
+This section covers gulp tasks to be used in conjunction with github
+***************************************************
+***************************************************
+ */
+//At the moment I don't see the need to add much more than this
+//this covers what I describe as a git cycle, add, commit, push.
+gulp.task('cycle', function(){
+  return gulp.src('./')
+  .pipe($.git.add({args: ' --ignore-errors'}))
+  .pipe($.git.commit('Added git support to work flow'))
+  .pipe($.git.push('origin', 'master'))
+  .end();  // .end() is required
 });

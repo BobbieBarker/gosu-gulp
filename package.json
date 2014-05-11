@@ -1,4 +1,16 @@
 {
+  "name": "gosu-gulp",
+  "version": "0.1.0",
+  "author": "Chad King",
+  "description": "A simple out of the box gulpfile, you may need to adjust filepaths on destinations/sources accordingly for your dev enviroment.",
+  "keywords": [
+    "cli",
+    "http",
+    "server",
+    "gulp",
+    "gulpfile",
+    "ready made gulpfile"
+  ],
   "devDependencies": {
     "gulp": "^3.6.0",
     "gulp-livereload": "^1.2.0",
@@ -15,6 +27,11 @@
     "gulp-notify": "^1.2.5",
     "gulp-clean": "^0.2.4",
     "gulp-plumber": "^0.6.1",
-    "gulp-load-plugins": "^0.5.0"
+    "gulp-load-plugins": "^0.5.0",
+    "gulp-git": "^0.4.2"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=1.4.3"
   }
 }
