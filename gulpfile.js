@@ -63,6 +63,9 @@ gulp.task('scripts', function(){
 		.pipe($.notify({ message: 'JS has been concactinated' }));
 });
 
+
+
+
 //minify all your JS 
 gulp.task('minJS', function(){
 	return gulp.src('./public/js/**/*.js')
@@ -91,6 +94,20 @@ gulp.task('watch', function(){
 	gulp.watch('public/assets/styles/sass/*.scss', ['sass']);
 })
 
+var testFiles = [
+	'tests/testTimeFactory.js'
+];
+
+gulp.task('test', function(){
+	return gulp.src(testFiles)
+		.pipe($.karma({
+			configFile: 'config/karma.conf.js',
+			action: 'watch'
+		}))
+		.on('error', function(err){
+			throw err;
+		})
+});
 
 gulp.task('development', ['sass', 'hint', 'scripts', 'watch', 'reloader', 'watchLoader']);
 
@@ -121,8 +138,8 @@ This section covers gulp tasks to be used in conjunction with github
 //this covers what I describe as a git cycle, add, commit, push.
 gulp.task('cycle', function(){
   return gulp.src('./')
-  .pipe($.git.add({args: ' --ignore-errors'}))
-  .pipe($.git.commit('Added git support to work flow'))
+  .pipe($.git.add())
+  .pipe($.git.commit('bug fix on timeTrackeService _savedLogs'))
   .pipe($.git.push('origin', 'master'))
   .end();  // .end() is required
 });
